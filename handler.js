@@ -1,16 +1,17 @@
 'use strict';
-const moment = require("moment")
+const moment = require("moment-timezone")
 
 module.exports.happyhour = (event, context, callback) => {
   try {
-
+    const now = moment().tz("America/Argentina/Buenos_Aires");
     const response = {
       statusCode: 200,
       body: JSON.stringify({
         message: 'Russell Service v1.0!',
         happyHourTime: 19,
-        currentTime: moment().format('LTS'),
-        isHappyHour: moment().hours() > 18 && moment().hours() < 20
+        currentTime: now.format('LTS'),
+        currentTimeHours: now.hours(),
+        isHappyHour: now.hours() > 18 && now.hours() < 21
       })
     };
 
