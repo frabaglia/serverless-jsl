@@ -1,0 +1,19 @@
+service: russell-service
+
+frameworkVersion: "=1.26.1"
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+
+plugins:
+  - serverless-offline
+
+functions:
+  happyhour:
+    name: happyhour
+    handler: handler.happyhour
+    events:
+      - http:
+          path: happyhour
+          method: get
